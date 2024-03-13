@@ -50,7 +50,7 @@ endif()
 #=======================================================================================================================
 # DEFINE LIBS
 #=======================================================================================================================
-add_subdirectory(${PROJECT_SOURCE_DIR}/contrib/GLEW/build/cmake)
+add_subdirectory(${PROJECT_SOURCE_DIR}/contrib/glew/build/cmake)
 
 #=======================================================================================================================
 # DEFINE FILE
@@ -59,8 +59,8 @@ foreach(NAME IN LISTS LIBRARY_TYPE_NAME)
     target_sources(${NAME} PRIVATE ${PUBLIC_HEADERS_FILES} ${SOURCE_LIB})
     target_include_directories(${NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
 
-    target_include_directories(${NAME} PRIVATE ${PROJECT_SOURCE_DIR}/contrib/GLEW/include)
-    target_include_directories(${NAME} PRIVATE ${PROJECT_SOURCE_DIR}/contrib/TUTL)
+    target_include_directories(${NAME} PRIVATE ${PROJECT_SOURCE_DIR}/contrib/glew/include)
+    target_include_directories(${NAME} PRIVATE ${PROJECT_SOURCE_DIR}/contrib/Tuple-utilities-template-library)
     target_link_libraries(${NAME} PRIVATE glew_s)
 endforeach()
 
