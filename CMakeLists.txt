@@ -14,9 +14,9 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output)
 #=======================================================================================================================
 # Add build options
 #=======================================================================================================================
-option(TEST_BUILD_OBJECT_LIB "Build object library (not available in Xcode)" OFF)
-option(TEST_BUILD_STATIC_LIB "Build static library                         " ON)
-option(TEST_BUILD_SHARED_LIB "Build shared library                         " OFF)
+option(GL_LAYER_BUILD_OBJECT_LIB "Build object library (not available in Xcode)" OFF)
+option(GL_LAYER_BUILD_STATIC_LIB "Build static library                         " ON)
+option(GL_LAYER_BUILD_SHARED_LIB "Build shared library                         " OFF)
 
 if(DEFINED BUILD_SHARED_LIBS)
     set(MYLIB_SHARED_LIBS ${BUILD_SHARED_LIBS})
