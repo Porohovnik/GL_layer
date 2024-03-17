@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.13)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -33,17 +33,17 @@ find_package(OpenGL REQUIRED)
 #=======================================================================================================================
 # LIBS CHOOSING TYPES
 #=======================================================================================================================
-if (${TEST_BUILD_OBJECT_LIB} AND (NOT CMAKE_GENERATOR STREQUAL Xcode))
+if (${GL_LAYER_BUILD_OBJECT_LIB})
     list(APPEND LIBRARY_TYPE_NAME  ${PROJECT_NAME}-object)
     add_library(${PROJECT_NAME}-object OBJECT)
 endif()
 
-if (${TEST_BUILD_STATIC_LIB})
+if (${GL_LAYER_BUILD_STATIC_LIB})
     list(APPEND LIBRARY_TYPE_NAME  ${PROJECT_NAME}-static)
     add_library(${PROJECT_NAME}-static STATIC)
 endif()
 
-if (${TEST_BUILD_SHARED_LIB})
+if (${GL_LAYER_BUILD_SHARED_LIB})
     list(APPEND LIBRARY_TYPE_NAME  ${PROJECT_NAME}-shared)
     add_library(${PROJECT_NAME}-shared SHARED)
 endif()
@@ -57,7 +57,7 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/contrib/glew/build/cmake)
 #=======================================================================================================================
 foreach(NAME IN LISTS LIBRARY_TYPE_NAME)
     target_sources(${NAME} PRIVATE ${PUBLIC_HEADERS_FILES} ${SOURCE_LIB})
-    target_include_directories(${NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
+    target_include_directories(${NAME} PRIVATE ${PROJECT_SOURCE_DIR}/include)
 
     target_include_directories(${NAME} PRIVATE ${PROJECT_SOURCE_DIR}/contrib/glew/include)
     target_include_directories(${NAME} PRIVATE ${PROJECT_SOURCE_DIR}/contrib/Tuple-utilities-template-library)
