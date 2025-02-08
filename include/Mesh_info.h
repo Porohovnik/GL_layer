@@ -11,33 +11,44 @@ enum class TYPE_data:std::size_t{position=0,normal=1,tangent=2,bitangent=3,tex_c
 class Mesh_info{
     std::array<uint,COUT_TYPE>            elements_cout{0};
     std::array<uint,COUT_TYPE_TEX_COORDS> tex_cord_cout{0};
+    uint offset=0;
+
+    void update_offset();
 public:
-    bool operator==(Mesh_info & info){
-        std::size_t sum=0;
-        for(uint i=0;i<COUT_TYPE;i++){
-           sum+= this->elements_cout[i]==info.elements_cout[i];
-        }
+    bool operator==(Mesh_info & info);
+    inline uint get_offset() const{
+        return offset;
+    }
 
-        for(uint i=0;i<COUT_TYPE_TEX_COORDS;i++){
-            sum+= this->tex_cord_cout[i]==info.tex_cord_cout[i];
-        }
+    template<TYPE_data type>
+    constexpr inline  uint get() const{
+        return elements_cout[static_cast<std::size_t>(type)];
+    }
 
-        if(sum!=(COUT_TYPE+COUT_TYPE_TEX_COORDS)){
-            return false;
-        }
-        return true;
+    inline  uint get(TYPE_data type) const{
+        return elements_cout[static_cast<std::size_t>(type)];
+    }
+
+    template<std::size_t type_texture>
+    constexpr inline  uint get_texture() const{
+        return tex_cord_cout[type_texture];
+    }
+
+    inline  uint get_texture(std::size_t type_texture) const{
+        return tex_cord_cout[type_texture];
     }
 
     template<TYPE_data type>
     void set(uint cout){
         elements_cout[static_cast<std::size_t>(type)]=cout;
+        update_offset();
     }
 
     template<std::size_t type_texture>
     void set_texture(uint cout){
         tex_cord_cout[type_texture]=cout;
+        update_offset();
     }
-
 
     void set_atribute_Mesh_buffer() const;
 };

@@ -22,14 +22,12 @@ class DrawElementsIndirectCommand_menedger{
 public:
     DrawElementsIndirectCommand cmd;
     std::size_t id=0;
-    std::size_t id_mesh=0;
 };
 
 class DrawArraysIndirectCommand_menedger{
 public:
     DrawArraysIndirectCommand cmd;
     std::size_t id=0;
-    std::size_t id_mesh=0;
 };
 
 template <int type_draw,typename T>

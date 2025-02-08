@@ -32,6 +32,11 @@ template <> int get_value_GL<TYPE_OBJECT_DRAW::TYPE_OBJECT_POINTS>(){ return GL_
 template <> int get_value_GL<TYPE_OBJECT_DRAW::TYPE_OBJECT_LINES>(){ return GL_LINES;}
 template <> int get_value_GL<TYPE_OBJECT_DRAW::TYPE_OBJECT_LINE_STRIP>(){ return GL_LINE_STRIP;}
 template <> int get_value_GL<TYPE_OBJECT_DRAW::TYPE_OBJECT_LINE_LOOP>(){ return GL_LINE_LOOP;}
+
+template <> int get_value_GL<TYPE_OBJECT_DRAW::TYPE_LINES_ADJACENCY>(){ return GL_LINES_ADJACENCY;}
+template <> int get_value_GL<TYPE_OBJECT_DRAW::TYPE_LINE_STRIP_ADJACENCY>(){ return GL_LINE_STRIP_ADJACENCY;}
+
+
 template <> int get_value_GL<TYPE_OBJECT_DRAW::TYPE_OBJECT_TRIANGLES>(){ return GL_TRIANGLES;}
 template <> int get_value_GL<TYPE_OBJECT_DRAW::TYPE_OBJECT_TRIANGLE_STRIP>(){ return GL_TRIANGLE_STRIP;}
 template <> int get_value_GL<TYPE_OBJECT_DRAW::TYPE_OBJECT_TRIANGLE_FAN>(){ return GL_TRIANGLE_FAN;}
@@ -124,7 +129,7 @@ int get_value_GL(TYPE_TEXTURE type_object){
     return 0;
 }
 
-template <> int get_value_GL<TYPE_BUFFER ::NUUL>(){return 0;};
+template <> int get_value_GL<TYPE_BUFFER ::NULL_>(){return 0;};
 template <> int get_value_GL<TYPE_BUFFER ::VERTEX_ARRAY>(){return GL_VERTEX_ARRAY;};
 template <> int get_value_GL<TYPE_BUFFER ::ARRAY_BUFFER>(){return GL_ARRAY_BUFFER;};
 template <> int get_value_GL<TYPE_BUFFER ::ELEMENT_ARRAY_BUFFER>(){return GL_ELEMENT_ARRAY_BUFFER;};

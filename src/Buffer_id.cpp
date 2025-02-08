@@ -23,7 +23,6 @@ Buffer_id<n>::Buffer_id(){
     }
 }
 
-
 template<TYPE_BUFFER n>
 Buffer_id<n>::~Buffer_id(){
     if constexpr(n==TYPE_BUFFER::SHADER_STORAGE_BUFFER ||
@@ -61,7 +60,7 @@ void Buffer_id<n>::clear_buffer_noBind(){
 
 
 template<TYPE_BUFFER n>
-void Buffer_id<n>::initialization_buffer_noBind(GLsizeiptr size_bate,void * data,GL_layer::BUFFER_SETTING type_update){
+void Buffer_id<n>::initialization_buffer_noBind(GLsizeiptr size_bate,const void * data,GL_layer::BUFFER_SETTING type_update){
     Bind_();
     if constexpr(n==TYPE_BUFFER::SHADER_STORAGE_BUFFER ||
                  n==TYPE_BUFFER::DRAW_INDIRECT_BUFFER  ||
@@ -85,7 +84,7 @@ void Buffer_id<n>::read_buffer_noBind(GLintptr begin,GLintptr end, GLsizeiptr si
 }
 
 
-
+template  class Buffer_id<TYPE_BUFFER::NULL_>;
 template  class Buffer_id<TYPE_BUFFER::VERTEX_ARRAY>;
 template  class Buffer_id<TYPE_BUFFER::ARRAY_BUFFER>;
 template  class Buffer_id<TYPE_BUFFER::ELEMENT_ARRAY_BUFFER>;

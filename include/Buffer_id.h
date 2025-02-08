@@ -2,9 +2,6 @@
 #define BUFFER_ID_H
 #include "GL_type_to_cpp.h"
 #include "interlayer_gl.h"
-//для всех шаблонов одни и теже
-inline static GL_layer::GLenum curent_Bind=0;
-inline static GL_layer::TYPE_BUFFER curent_Bind_point=GL_layer::TYPE_BUFFER::NUUL;
 
 namespace GL_layer {
 template<TYPE_BUFFER n>
@@ -41,7 +38,7 @@ public:
 
     Buffer_id();
 
-    Buffer_id(GLsizeiptr size_bate,void * data,GL_layer::BUFFER_SETTING type_update=GL_layer::BUFFER_SETTING::STATIC):Buffer_id(){
+    Buffer_id(GLsizeiptr size_bate,const void * data,GL_layer::BUFFER_SETTING type_update=GL_layer::BUFFER_SETTING::STATIC):Buffer_id(){
         initialization_buffer_noBind(size_bate,data,type_update);
     }
 
@@ -50,17 +47,10 @@ public:
     template<TYPE_BUFFER n_any>
     inline void Bind_set_point() const noexcept{
         Bind<n_any>(buffer);
-
-        curent_Bind=buffer;
-        curent_Bind_point=n_any;
     }
 
     inline void Bind_()  const noexcept{
-        if(curent_Bind!=buffer || curent_Bind_point!=n){
-
-        } Bind<n>(buffer);//пока так
-        curent_Bind=buffer;
-        curent_Bind_point=n;
+        Bind<n>(buffer);//пока так
     }
 
     void BindBase(GLuint bind_base) const noexcept;
@@ -72,7 +62,7 @@ public:
     }
     void clear_buffer_noBind();
     //void clear_buffer_noBind(const void *data=nullptr,GLenum internalformat=GL_R32UI, GLenum format=GL_RED_INTEGER, GLenum type=GL_UNSIGNED_INT);
-    void initialization_buffer_noBind(GLsizeiptr size_bate,void * data,GL_layer::BUFFER_SETTING type_update=GL_layer::BUFFER_SETTING::STATIC);
+    void initialization_buffer_noBind(GLsizeiptr size_bate,const void * data,GL_layer::BUFFER_SETTING type_update=GL_layer::BUFFER_SETTING::STATIC);
     void update_buffer_noBind(GLintptr begin,GLintptr end,GLsizeiptr size_byte,const void * data,GLuint offset=0);
     void read_buffer_noBind(GLintptr begin,GLintptr end, GLsizeiptr size_byte,void * data) const;
 

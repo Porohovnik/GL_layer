@@ -5,8 +5,13 @@ namespace GL_layer{
 
 bool Init_GLEW();
 
+template <TYPE_POLYGON_MOD mod>
+void PolygonMode();
+
 void Finish();
 GLenum Get_Error();
+
+
 
 void * MapBuffer(GLenum n,GLenum type);
 void UnmapBuffer(GLenum n);

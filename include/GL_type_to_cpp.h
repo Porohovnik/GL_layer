@@ -19,6 +19,11 @@ using   GLdouble= double;
 using GLsizeiptr=std::ptrdiff_t;
 using GLintptr=std::ptrdiff_t;
 
+enum class TYPE_POLYGON_MOD:int{
+    POINT,
+    LINE,
+    FILL
+};
 
 enum class SHEME_TYPE_GL:int{
     UNSIGNED_BYTE,
@@ -81,9 +86,14 @@ enum class TYPE_OBJECT_DRAW:int{
     TYPE_OBJECT_LINES,
     TYPE_OBJECT_LINE_STRIP,
     TYPE_OBJECT_LINE_LOOP,
+
+    TYPE_LINE_STRIP_ADJACENCY,
+    TYPE_LINES_ADJACENCY,
+
     TYPE_OBJECT_TRIANGLES,
     TYPE_OBJECT_TRIANGLE_STRIP,
     TYPE_OBJECT_TRIANGLE_FAN,
+
     TYPE_OBJECT_QUADS,
     TYPE_OBJECT_QUAD_STRIP,
     TYPE_OBJECT_POLYGON
@@ -116,7 +126,7 @@ int get_value_GL(TYPE_TEXTURE type_object);
 
 
 enum class TYPE_BUFFER:int {
-    NUUL=0,
+    NULL_,
     VERTEX_ARRAY,
     ARRAY_BUFFER,
     ELEMENT_ARRAY_BUFFER,

@@ -13,6 +13,9 @@ bool Init_GLEW(){
     return true;
 }
 
+template<> void PolygonMode<TYPE_POLYGON_MOD::POINT>(){glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);}
+template<> void PolygonMode<TYPE_POLYGON_MOD::LINE>() {glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);}
+template<> void PolygonMode<TYPE_POLYGON_MOD::FILL>() {glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);}
 void Finish(){
       glFinish();
 }
@@ -67,7 +70,7 @@ void read_pixel(GLsizei x,GLsizei y,GLsizei weight,GLsizei height,GLsizei type_s
     glReadPixels(x,y,weight,height,type_scheme_pixel,type_byte,data);
 }
 
-template<> void Bind<TYPE_BUFFER::NUUL>                        (GLenum buffer){glBindBuffer(0, buffer);};
+template<> void Bind<TYPE_BUFFER::NULL_>                       (GLenum buffer){glBindBuffer(0, buffer);};
 
 template<> void Bind<TYPE_BUFFER::SHADER_STORAGE_BUFFER>       (GLenum buffer){glBindBuffer(GL_SHADER_STORAGE_BUFFER, buffer);};
 template<> void Bind<TYPE_BUFFER::DRAW_INDIRECT_BUFFER>        (GLenum buffer){glBindBuffer(GL_DRAW_INDIRECT_BUFFER, buffer);};
